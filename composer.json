@@ -1,7 +1,7 @@
 {
   "name": "boost-dev/acf-repeater-tab-ui",
   "type": "wordpress-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     {
       "name": "Michael James",
