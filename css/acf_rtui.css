@@ -174,20 +174,14 @@ button.rtui-tab {
 
 .rtui-activated.rtui-vertical > .rtui-tabs > .acf-actions a,
 .rtui-activated.rtui-vertical > .rtui-tabs > .acf-actions button {
-  margin-top: 0.5em;
-  width: 120px;
   text-align: center;
+  width: 100%;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .rtui-activated.rtui-vertical > .rtui-tabs > .acf-actions {
   padding-left: 0.5em;
-  padding-right: 0.5em;
-  /*text-align: left;*/
-  order: 1;
-}
-
-.rtui-activated.rtui-vertical > .rtui-tabs > .rtui-nav {
-  order: 2;
 }
 
 .rtui-activated.rtui-vertical > .rtui-tabs {
@@ -197,7 +191,7 @@ button.rtui-tab {
   flex-direction: column;
 }
 
-.rtui-activated.rtui-vertical
+/* .rtui-activated.rtui-vertical
   > .acf-repeater
   > .acf-table
   > tbody
@@ -207,9 +201,9 @@ button.rtui-tab {
   width: 0;
   padding: 0;
   border: none;
-}
+} */
 
-.rtui-activated.rtui-vertical
+/* .rtui-activated.rtui-vertical
   > .acf-repeater
   > .acf-table
   > tbody
@@ -218,11 +212,12 @@ button.rtui-tab {
   > .acf-icon.-minus {
   display: block;
   position: absolute;
-  top: 15px;
-  /*this places the button hidden beneath our remove*/
-  /*it will be positioned to be central to that button with js*/
-  right: calc(125% - 30px - 0.5em);
-}
+
+
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+} */
 
 .rtui-activated > .rtui-tabs > .acf-actions {
   flex-wrap: wrap;
@@ -250,6 +245,17 @@ button.rtui-tab {
   right: 20px;
 }
 
+.rtui-activated .rtui-remove-btn {
+  padding: 10px;
+  line-height: 1;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  opacity: 0.5;
+}
+.rtui-activated .rtui-remove-btn:hover {
+  opacity: 1;
+}
 .rtui-remove-btn,
 .rtui-activated
   > .acf-repeater

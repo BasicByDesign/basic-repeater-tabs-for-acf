@@ -26,7 +26,6 @@
  * ACF Repeater Tabs | James Park Ninja
  * Licensed under the terms of the MIT source code license
  */
-
 ;(function () {
   this.jpnuniqid = function (pr, en) {
     var pr = pr || "",
@@ -233,7 +232,7 @@ jQuery(document).ready(function ($) {
       $(".rtui-activated").each(function () {
         TabbedRepeaters.generateTabs($(this))
         TabbedRepeaters.relocateAddNewButton($(this))
-        TabbedRepeaters.addRemoveButton($(this))
+        // TabbedRepeaters.addRemoveButton($(this))
         // TabbedRepeaters.makeSortable($(this))
       })
       TabbedRepeaters.refreshSortables()
@@ -248,44 +247,35 @@ jQuery(document).ready(function ($) {
 
     // add the remove button into actions
     addRemoveButton: function ($field) {
-      var $tabs = $field.find("> .rtui-tabs")
-      var $actions = $tabs.find("> .acf-actions")
+      const $fields = $field.find(".acf-fields")
 
       var btn = $("<button></button>", {
-        html: "Remove row",
+        html: '<span class="dashicons dashicons-trash"></span>',
         class: "button rtui-remove-btn",
       })
       btn.click(function (e) {
         e.preventDefault()
+        e.stopPropagation()
         // find the remove button
-        var removeBtn = TabbedRepeaters.findActiveRowRemove($field)
-
-        // if we have no rows then there isnt a button
-        if (!removeBtn) return
-
-        // move it to this btn centre
-        var btnCentre = $(this).outerWidth() / 2
-        var containerWidth = $tabs.outerWidth()
-        var btnRight = containerWidth - $(this).position().left - btnCentre - 10
-
-        if ($field.hasClass("rtui-vertical")) {
-          removeBtn.css({
-            right: "calc( 125% - 10px - 0.5em - " + btnCentre + "px )",
-          })
-        } else {
-          removeBtn.css({ right: btnRight + "px " })
-        }
-
-        // click it
-        removeBtn.trigger("click")
+        // var removeBtn = TabbedRepeaters.findActiveRowRemove($field)
+        TabbedRepeaters.removeActiveRow($field)
+        return
       })
-      $actions.prepend(btn)
+      $fields.append(btn)
     },
 
     findActiveRowRemove: function ($field) {
       return $field.find(
         "> .acf-repeater > .acf-table > tbody > .acf-row.active > .acf-row-handle > .-minus"
       )
+    },
+
+    removeActiveRow: function ($field) {
+      const activeRow = $field.find(".acf-row.active")
+      console.log(activeRow)
+      if (activeRow.length) {
+        activeRow.find(".-minus").trigger("click")
+      }
     },
 
     // ensures that all tabs are sortable
